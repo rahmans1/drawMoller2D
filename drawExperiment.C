@@ -50,9 +50,12 @@ void draw_ray(double x1, double x2, double y1, double y2, int col){
    Double_t zlo = x1;
 
    Double_t theta = atan((rhi-rlo)/(zhi-zlo));
+   std::cout<< "x1: "<<x1<<", y1: "<<y1 <<", x2:"<< x2<<", y2:"<<y2 << std::endl;
+   std::cout<< "Theta: " << theta<< std::endl;
+     
    Double_t znew = 31700.;
 
-   Double_t rnew = (znew-zlo)*tan(theta);
+   Double_t rnew = (znew-zlo)*tan(theta)+rlo;
    TLine *ray = new TLine(zlo,rlo,znew,rnew);
    ray->SetLineColor(col);
    ray->Draw("same");
@@ -96,12 +99,15 @@ void draw_track(double x1, double x2, double y1, double y2, int col){
 
 }
 
-void drawExperiment(){
+
+void drawWholeExperiment(){
    auto C = new TCanvas();
    gStyle->SetOptTitle(kFALSE);
    gStyle->SetOptStat(0);
-   
-   auto h1 = new TH2F ("h1","Histogram drawn with full circles",100,-700,31700.,100,0,1500);
+
+
+  
+   auto h1 = new TH2F ("h1","Downstream Nose",1000,-100, 31700.,1000,0,1500);
    h1->Draw("");
 
   h1->GetXaxis()->SetTitle("z (mm)");
@@ -137,7 +143,7 @@ void drawExperiment(){
    const int nboxes =2;
    Double_t s1[nboxes]={-1250/2,  1500.};
    Double_t s2[nboxes]={ 1250/2,  1500.002};
-   Double_t r1[nboxes]={     0.,  0.};
+   Double_t r1[nboxes]={     -2.5,  0.};
    Double_t r2[nboxes]={    10.,  140.};
 
    const int nrings =6;
@@ -165,17 +171,56 @@ void drawExperiment(){
    Double_t colls1[ncolls]={ 5250., 5250.,  7725., 7725., 12300.};
    Double_t colls2[ncolls]={ 5400., 5400.,  7875., 7875., 12370.};
    //   Double_t collr1[ncolls]={21.336,  98., 30.861, 196.5};
-   Double_t collr1[ncolls]={21.336,  101., 30.861, 196.5, 74.22};
+   //   Double_t collr1[ncolls]={21.336,  101., 30.861, 196.5, 74.22};
+   Double_t collr1[ncolls]={16.,  101., 30.861, 196.5, 74.22};
    //   Double_t r1[nboxes]={     0., 21.336,  103.};
    Double_t collr2[ncolls]={   35.,  150.,   53.5,  250., 116.38};
  
    //beampipe and ds window
-   const int npipe = 6; 
+   const int npipe = 8; 
    Double_t bps1[npipe]={23010.,  23290.4, 23920.8, 24133.1, 24320.4, 23015.12};
-   Double_t bpl1[npipe]={  280.4,   630.4,   212.3,   187.3,  6506.,    280.4};
-   Double_t bpr1[npipe]={  504.76,  504.78,  525.,    526.6,   550.,    504.76};
+   Double_t bpl1[npipe]={  280.4,   630.4,   212.3,   187.3,  6506.,    280.4 };
+   //   Double_t bpr1[npipe]={  504.76,  504.78,  525.,    526.6,   550.,    504.76, 25.5};
+   //Double_t bpr2[npipe]={  504.76,  528.33,  525.,    550.,    746.45,  988., 28.5};
+   //Double_t bpt1[npipe]={    2.38,    4.76,   28.6,     6.35,   19.05,    2.38125, 3. };
+   Double_t bpr1[npipe]={  504.76,  504.78,  525.,    526.6,   550.,    504.76    };
    Double_t bpr2[npipe]={  504.76,  528.33,  525.,    550.,    746.45,  988.};
    Double_t bpt1[npipe]={    2.38,    4.76,   28.6,     6.35,   19.05,    2.38125 };
+
+   TLine *line=new TLine();
+   line->DrawLine(5400, 16, 5400+950, 19);
+   line->DrawLine(5400, 16+8, 5400+950, 19+8); 
+   line->DrawLine(5400+950, 19, 5400+950+995, 23);
+   line->DrawLine(5400+950, 19+8, 5400+950+995, 19+9);
+
+
+
+
+
+
+   line->DrawLine(7875, 32, 9500, 32);
+   line->DrawLine(7875, 38, 9500, 38);
+   line->DrawLine(9500, 32, 9500, 38);
+
+
+   line->DrawLine(9500, 38, 13000, 49); 
+   line->DrawLine(9500, 32, 13000, 43);
+
+
+
+//   line->DrawLine(9500, 40.68, 12350, 48.02);
+//   line->DrawLine(16170.388, 149.310, 12350, 48.02);
+   
+
+
+   
+
+
+   //coils?
+   /*
+   Double_t uss[ncoils]={};
+   Double_t usl[ncoils]={};
+   */
    
    //lintels and collars
    /*   const int nlint =5; 
@@ -209,7 +254,7 @@ void drawExperiment(){
    int lint = 1;
    int slogic = 1;
    
-   for(int i=0;i<7;i++){
+   for(int i=0;i<8;i++){
      if(i<nboxes&&tarbeam>0)  draw_box(s1[i],s2[i],r1[i],r2[i],slogic,1);
      if(i<ncolls&&trapcoll>0) draw_box(colls1[i],colls2[i],collr1[i],collr2[i],slogic,1);
      if(i<nlint&&lint>0)     draw_box(lints1[i],lints2[i],lintr1[i],lintr2[i],slogic,1);
@@ -220,6 +265,7 @@ void drawExperiment(){
        draw_pipe(bps1[i],bpl1[i],bpr1[i],bpr2[i],bpt1[i]);
        slogic = 1;
        if(i==2) draw_box(bps1[i],bps1[i]+bpl1[i],bpr1[i],bpr2[i]+bpt1[i],slogic,1);
+       cout<<"i = "<<i<<endl;
      }
      
      if(i<ncoll1&&firstcoll>0){
@@ -273,7 +319,8 @@ void drawExperiment(){
   ifstream in;
   //  in.open("one_cartoon_track.txt");
   //  in.open("processed_tracks.txt");
-  in.open("tracks/extreme_tracks_bfil125.txt");
+  in.open("extreme_tracks_bfil125.txt");
+
 
   ofstream out;
   out.open("test.txt", ofstream::out);
