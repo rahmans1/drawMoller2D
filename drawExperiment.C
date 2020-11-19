@@ -100,14 +100,14 @@ void draw_track(double x1, double x2, double y1, double y2, int col){
 }
 
 
-void drawWholeExperiment(){
+void drawExperiment(){
    auto C = new TCanvas();
    gStyle->SetOptTitle(kFALSE);
    gStyle->SetOptStat(0);
 
 
   
-   auto h1 = new TH2F ("h1","Downstream Nose",1000,-100, 31700.,1000,0,1500);
+   auto h1 = new TH2F ("h1","Entire Experiment",1000,-100, 31700.,1000,0,1500);
    h1->Draw("");
 
   h1->GetXaxis()->SetTitle("z (mm)");
