@@ -56,7 +56,7 @@ void draw_ray(double x1, double x2, double y1, double y2, int col){
    std::cout<< "x1: "<<x1<<", y1: "<<y1 <<", x2:"<< x2<<", y2:"<<y2 << std::endl;
    std::cout<< "Theta: " << theta<< std::endl;
      
-   Double_t znew = 31700.;
+   Double_t znew = 31700.-4500+zOffset;
 
    Double_t rnew = (znew-zlo)*tan(theta)+rlo;
    TLine *ray = new TLine(zlo,rlo,znew,rnew);
@@ -76,7 +76,7 @@ void draw_los(double x1, double x2, double y1, double y2, int col){
   Double_t theta = atan((rhi-rlo)/(zhi-zlo));
   Double_t znew = zlo-rlo/tan(theta);
   Double_t rnew = 0.;
-  zhi = 31700;
+  zhi = 31700-4500+zOffset;
   rhi = rhi + (31700-26500)*tan(theta);
   TLine *los = new TLine(zhi,rhi,znew,rnew);
   los->SetLineColor(col);
@@ -326,14 +326,14 @@ void drawExperiment(){
   leg4->SetLineColor(66);
   leg5->SetLineColor(46);
   legend->Draw();
-   
+/*   
    const int nboxes =2;
    Double_t s1[nboxes]={-1250/2,  1500.};
    Double_t s2[nboxes]={ 1250/2,  1500.002};
    Double_t r1[nboxes]={     -2.5,  0.};
    Double_t r2[nboxes]={    10.,  140.};
 
-   
+  
    //Collimator 1
    const int ncoll1 = 5;
    Double_t c1s1[ncoll1]={4675.,  4775.,  4875.,  4975.,  5075.};
@@ -350,7 +350,7 @@ void drawExperiment(){
    Double_t collr1[ncolls]={16.,  101., 30.861, 196.5, 74.22};
    //   Double_t r1[nboxes]={     0., 21.336,  103.};
    Double_t collr2[ncolls]={   35.,  150.,   53.5,  250., 116.38};
- 
+ */
    //beampipe and ds window
    const int npipe = 8; 
    Double_t bps1[npipe]={23010.,  23290.4, 23920.8, 24133.1, 24320.4, 23015.12};
@@ -379,17 +379,14 @@ void drawExperiment(){
    drawDetectors();
 
 
-   draw_ray(-1250.0/2.0+zOffset-4500,575+zOffset, -2.5, 13.629,2);  //IPE
-   draw_ray(1250.0/2+zOffset-4500, 7725-4500+zOffset,-2.5,53.5,3); //OPE inner
-   draw_ray(-1250.0/2+zOffset-4500, 5400-4500+zOffset,-2.5,101,3); //OPE outer
+   draw_ray(1250.0/2.0+zOffset-4500,575+zOffset, -2.5, 13.629,2);  //IPE
+   draw_ray(-1250.0/2+zOffset-4500, 7725-4500+zOffset,-2.5,53.5,3); //OPE inner
+   draw_ray(1250.0/2+zOffset-4500, 5400-4500+zOffset,-2.5,101,3); //OPE outer
 
-   //   draw_los(colls2[3],s1[2],collr1[3],r2[2],4);
-   //      //draw_los(lints2[3],dets1[0],lintr1[3],detr2[0],4);
-   //         draw_los(colls2[3],dets1[0],collr1[3],detr2[0],4);
-   //            draw_los(colls2[1],dets1[0],collr1[1],detr1[1],4);
-   //
+   draw_los(7875+zOffset-4500,21995+zOffset,196.5,1035,4); // line of sight
+   draw_los(5400+zOffset-4500, 21995+zOffset,101,675,4); //line of sight
 
-// Draw tracks and rays
+//    Draw tracks and rays
    int tarbeam = 1;
    int detrings = 1;
    int firstcoll = 1;
