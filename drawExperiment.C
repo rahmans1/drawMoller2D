@@ -378,6 +378,17 @@ void drawExperiment(){
    drawDSCoil();
    drawDetectors();
 
+
+   draw_ray(-1250.0/2.0+zOffset-4500,575+zOffset, -2.5, 13.629,2);  //IPE
+   draw_ray(1250.0/2+zOffset-4500, 7725-4500+zOffset,-2.5,53.5,3); //OPE inner
+   draw_ray(-1250.0/2+zOffset-4500, 5400-4500+zOffset,-2.5,101,3); //OPE outer
+
+   //   draw_los(colls2[3],s1[2],collr1[3],r2[2],4);
+   //      //draw_los(lints2[3],dets1[0],lintr1[3],detr2[0],4);
+   //         draw_los(colls2[3],dets1[0],collr1[3],detr2[0],4);
+   //            draw_los(colls2[1],dets1[0],collr1[1],detr1[1],4);
+   //
+
 // Draw tracks and rays
    int tarbeam = 1;
    int detrings = 1;
