@@ -104,6 +104,51 @@ void draw_track(double x1, double x2, double y1, double y2, int col){
 
 
 
+void drawTarget(){
+
+TBox *target=new TBox(-1250.0/2., -2.5, 1250.0/2, 10);
+target->SetFillColor(0);
+target->Draw("lsame");
+
+}
+
+void drawCollars(){
+
+
+TBox *tgtShield=new TBox(1200-4500+zOffset, 140, 1600-4500+zOffset, 1150);
+tgtShield->SetFillColor(0);
+tgtShield->Draw("lsame");
+
+
+TBox *photonCollar=new TBox(2851.-4500+zOffset,  74, 3051-4500+zOffset, 330);
+photonCollar->SetFillColor(0);
+photonCollar->Draw("lsame");
+
+
+TBox *leadWall=new TBox(8930.5-4500+zOffset, 265, 9180.5-4500+zOffset, 1200);
+leadWall->SetFillColor(0);
+leadWall->Draw("lsame");
+
+
+
+TBox *lintel=new TBox(12285-4500+zOffset, 435, 12385-4500+zOffset, 650);
+lintel->SetFillColor(0);
+lintel->Draw("lsame");
+
+TBox *collar1=new TBox(16750-4500+zOffset, 600, 16900-4500+zOffset, 750);
+collar1->SetFillColor(0);
+collar1->Draw("lsame");
+
+
+
+TBox *collar2=new TBox(23350-4500+zOffset, 952, 23500-4500+zOffset, 1200);
+collar2->SetFillColor(0);
+collar2->Draw("lsame");
+
+
+}
+
+
 void drawCollimator1(){
 
 Double_t z[10] = {175+zOffset, 175+100+zOffset, 175+190+zOffset, 175+310+zOffset, 175+400+zOffset, 175+500+zOffset, 175+725+zOffset, 175+725+zOffset, 175+zOffset, 175+zOffset};
@@ -156,7 +201,7 @@ front->Draw("lsame");
 
 TArc *back= new TArc( z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0, 0, 90);
 back->Draw("lsame");
-back->DrawArc(z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0, 0, 270, 360);
+back->DrawArc(z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0,  270, 360);
 
 
 
@@ -319,6 +364,49 @@ void drawExperiment(){
 
 
 
+
+
+
+
+
+   drawTarget();
+   drawCollars();
+   drawCollimator1(); 
+   drawAcceptCollimators();
+   draw2bShields();
+   drawUSCoil();
+   drawDSCoil();
+   drawDetectors();
+
+
+
+ //===========================================
+   //envelopes
+   // Read in the track values vs. radius for each particle/angle
+   // currently works for one track
+   //need to either add a check for z < something and start over or have separate files?
+  float position[3][1196];
+  float tmp_position[2]={0.,0.};//  float velocity[3][3589];
+  //float time[305]={0.};
+
+  int debug=0;
+
+  ifstream in;
+  //  in.open("one_cartoon_track.txt");
+  //  in.open("processed_tracks.txt");
+  in.open("extreme_tracks_bfil125.txt");
+
+  ofstream out;
+  out.open("test.txt", ofstream::out);
+
+  //  if (!out.good()) {
+  //cout<<"ERROR: file doesn't exist"<<endl;
+  // return 0;
+  // }
+
+  //  int maxlines=305;
+  // int maxlines=3589;
+  int maxlines=1197;
   int nlines=0;
   float rmax = 0;
   int track_col[5]={46,66,46,66,46};
