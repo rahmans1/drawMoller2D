@@ -199,9 +199,9 @@ usCoil->Draw("lsame");
 TArc *front= new TArc( z[0], (r[1]+r[0])/2.0, (r[1]-r[0])/2.0, 90, 270);
 front->Draw("lsame");
 
-TArc *back= new TArc( z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0, 0, 90);
+TArc *back= new TArc( z[3], (r[2]+r[3])/2.0, (r[2]-r[3])/2.0, 0, 90);
 back->Draw("lsame");
-back->DrawArc(z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0,  270, 360);
+back->DrawArc(z[3], (r[2]+r[3])/2.0, (r[2]-r[3])/2.0,  270, 360);
 
 
 
@@ -216,12 +216,32 @@ TPolyLine *ds1=new TPolyLine(5, z1, r1);
 ds1->SetFillStyle(0);
 ds1->Draw("lsame");
 
+TArc *front1= new TArc( z1[0], (r1[1]+r1[0])/2.0, (r1[1]-r1[0])/2.0, 90, 270);
+front1->Draw("lsame");
+
+TArc *back1= new TArc( z1[3], (r1[2]+r1[3])/2.0, (r1[2]-r1[3])/2.0, 0, 90);
+back1->Draw("lsame");
+back1->DrawArc(z1[3], (r1[2]+r1[3])/2.0, (r1[2]-r1[3])/2.0,  270, 360);
+
+
+
+
 Double_t z2[5]= {6036+zOffset, 6036+zOffset, 6876+zOffset, 6876+zOffset, 6036+zOffset};
 Double_t r2[5]= {43.35-1, 214.19+1, 238.35+1, 45.51-1, 43.35-1} ;
 
 TPolyLine *ds2=new TPolyLine(5, z2, r2);
 ds2->SetFillStyle(0);
 ds2->Draw("lsame");
+
+TArc *front2= new TArc( z2[0], (r2[1]+r2[0])/2.0, (r2[1]-r2[0])/2.0, 90, 270);
+front2->Draw("lsame");
+
+TArc *back2= new TArc( z2[3], (r2[2]+r2[3])/2.0, (r2[2]-r2[3])/2.0, 0, 90);
+back2->Draw("lsame");
+back2->DrawArc(z2[3], (r2[2]+r2[3])/2.0, (r2[2]-r2[3])/2.0,  270, 360);
+
+
+
 
 Double_t z3[5]= {7097+zOffset, 7097+zOffset, 7850+zOffset, 7850+zOffset, 7097+zOffset};
 Double_t r3[5]= {46.08-1, 260.35+1, 277.29+1, 48.02-1, 46.08-1} ;
@@ -230,12 +250,29 @@ TPolyLine *ds3=new TPolyLine(5, z3, r3);
 ds3->SetFillStyle(0);
 ds3->Draw("lsame");
 
+TArc *front3= new TArc( z3[0], (r3[1]+r3[0])/2.0, (r3[1]-r3[0])/2.0, 90, 270);
+front3->Draw("lsame");
+
+TArc *back3= new TArc( z3[3], (r3[2]+r3[3])/2.0, (r3[2]-r3[3])/2.0, 0, 90);
+back3->Draw("lsame");
+back3->DrawArc(z3[3], (r3[2]+r3[3])/2.0, (r3[2]-r3[3])/2.0,  270, 360);
+
+
+
 Double_t z4[27]= {8117.861+zOffset, 9478.17411+zOffset, 11454.99469+zOffset, 11670.388+zOffset, 11670.388+zOffset, 9760.31833+zOffset, 9743.34349+zOffset, 9726.46292+zOffset, 9709.79228+zOffset, 9693.44576+zOffset, 9677.53537+zOffset, 9662.17008+zOffset, 9647.5517+zOffset, 9633.39145+zOffset, 9620.37456+zOffset, 9602.09365+zOffset, 9582.63092+zOffset, 9562.12010+zOffset, 9540.70217+zOffset, 9518.52430+zOffset, 9495.73892+zOffset, 9472.50260+zOffset, 9448.97504+zOffset, 9425.31792+zOffset, 8426.68591+zOffset, 8117.861+zOffset, 8117.861+zOffset};
 Double_t r4[27]={ 50.505-1,  78.91171-1, 182.79241-1, 149.310-1, 410.970+1, 289.03516+1, 289.47212+1, 291.31138+1, 294.54033+1, 299.13685+1, 305.06944+1, 312.29747+1, 320.77142+1, 330.43324+1, 341.21674+1, 356.24363+1, 369.70471+1, 381.50749+1, 391.57084+1, 399.82562+1, 406.21508+1, 410.69533+1, 413.23557+1, 413.81834+1, 378.94544+1, 325.750+1, 50.505-1  };
 
 TPolyLine *ds4=new TPolyLine(27, z4, r4);
 ds4->SetFillStyle(0);
 ds4->Draw("lsame");
+
+TArc *front4= new TArc( z4[0], (r4[0]+r4[25])/2.0, (r4[25]-r4[0])/2.0, 90, 270);
+front4->Draw("lsame");
+
+TArc *back4= new TArc( z4[3], (r4[3]+r4[4])/2.0, (r4[4]-r4[3])/2.0, 0, 90);
+back4->Draw("lsame");
+back4->DrawArc(z4[3], (r4[3]+r4[4])/2.0, (r4[4]-r4[3])/2.0,  270, 360);
+
 
         
 }
