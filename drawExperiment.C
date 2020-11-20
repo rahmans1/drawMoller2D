@@ -4,6 +4,9 @@
 
 using namespace std;
 
+Float_t zOffset = 4500;
+
+
 void draw_box(double x1, double x2, double y1, double y2, int syes, int col){
 
    TLine *r_inner = new TLine(x1,y1,x2,y1);
@@ -100,6 +103,155 @@ void draw_track(double x1, double x2, double y1, double y2, int col){
 }
 
 
+
+void drawCollimator1(){
+
+Double_t z[10] = {175+zOffset, 175+100+zOffset, 175+190+zOffset, 175+310+zOffset, 175+400+zOffset, 175+500+zOffset, 175+725+zOffset, 175+725+zOffset, 175+zOffset, 175+zOffset};
+Double_t r[10]= {20, 16.25, 15.1, 14.1, 13.629, 13.908, 14.536, 27, 27, 20};
+
+TPolyLine *coll1=new TPolyLine(10, z, r);
+coll1->SetFillStyle(0);
+coll1->Draw("lsame");
+
+}
+
+void drawAcceptCollimators(){
+
+TBox* coll2_bot=new TBox(-4500+5250+zOffset, 27, -4500+5400+zOffset, 35.0); // Give bottom left and top right cooridnate
+coll2_bot->SetFillStyle(0);
+coll2_bot->Draw("lsame");
+
+TBox* coll2_top=new TBox(-4500+5250+zOffset, 101, -4500+5400+zOffset, 150.0); // Give bottom left and top right cooridnate
+coll2_top->SetFillStyle(0);
+coll2_top->Draw("lsame");
+
+
+TBox* coll4_bot=new TBox(-4500+7725+zOffset, 30.861, -4500+7875+zOffset, 53.5); // Give bottom left and top right cooridnate
+coll4_bot->SetFillStyle(0);
+coll4_bot->Draw("lsame");
+
+TBox* coll4_top=new TBox(-4500+7725+zOffset, 196.5, -4500+7875+zOffset, 250.0); // Give bottom left and top right cooridnate
+coll4_top->SetFillStyle(0);
+coll4_top->Draw("lsame");
+
+TBox* coll5=new TBox(-4500+12300+zOffset, 74.22, -4500+12370+zOffset, 116.38); // Give bottom left and top right cooridnate
+coll5->SetFillStyle(0);
+coll5->Draw("lsame");
+
+
+}
+
+
+void drawUSCoil(){
+
+Double_t z[5]= {1103.025+zOffset, 1103.025+zOffset, 2895.755+zOffset, 2895.755+zOffset, 1103.025+zOffset};
+Double_t r[5]= {31.152-1, 239.284+1, 243.899+1, 35.767-1, 31.152-1};
+
+TPolyLine *usCoil=new TPolyLine(5, z, r);
+usCoil->SetFillStyle(0);
+usCoil->Draw("lsame");
+
+TArc *front= new TArc( z[0], (r[1]+r[0])/2.0, (r[1]-r[0])/2.0, 90, 270);
+front->Draw("lsame");
+
+TArc *back= new TArc( z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0, 0, 90);
+back->Draw("lsame");
+back->DrawArc(z[3], (r[3]+r[4])/2.0, (r[3]-r[4])/2.0, 0, 270, 360);
+
+
+
+}
+
+void drawDSCoil(){
+
+Double_t z1[5]= {5000+zOffset, 5000+zOffset, 5860+zOffset, 5860+zOffset, 5000+zOffset};
+Double_t r1[5]= {40.68-1, 173.22+1, 198.23+1, 42.89-1, 40.68-1} ;
+
+TPolyLine *ds1=new TPolyLine(5, z1, r1);
+ds1->SetFillStyle(0);
+ds1->Draw("lsame");
+
+Double_t z2[5]= {6036+zOffset, 6036+zOffset, 6876+zOffset, 6876+zOffset, 6036+zOffset};
+Double_t r2[5]= {43.35-1, 214.19+1, 238.35+1, 45.51-1, 43.35-1} ;
+
+TPolyLine *ds2=new TPolyLine(5, z2, r2);
+ds2->SetFillStyle(0);
+ds2->Draw("lsame");
+
+Double_t z3[5]= {7097+zOffset, 7097+zOffset, 7850+zOffset, 7850+zOffset, 7097+zOffset};
+Double_t r3[5]= {46.08-1, 260.35+1, 277.29+1, 48.02-1, 46.08-1} ;
+
+TPolyLine *ds3=new TPolyLine(5, z3, r3);
+ds3->SetFillStyle(0);
+ds3->Draw("lsame");
+
+Double_t z4[27]= {8117.861+zOffset, 9478.17411+zOffset, 11454.99469+zOffset, 11670.388+zOffset, 11670.388+zOffset, 9760.31833+zOffset, 9743.34349+zOffset, 9726.46292+zOffset, 9709.79228+zOffset, 9693.44576+zOffset, 9677.53537+zOffset, 9662.17008+zOffset, 9647.5517+zOffset, 9633.39145+zOffset, 9620.37456+zOffset, 9602.09365+zOffset, 9582.63092+zOffset, 9562.12010+zOffset, 9540.70217+zOffset, 9518.52430+zOffset, 9495.73892+zOffset, 9472.50260+zOffset, 9448.97504+zOffset, 9425.31792+zOffset, 8426.68591+zOffset, 8117.861+zOffset, 8117.861+zOffset};
+Double_t r4[27]={ 50.505-1,  78.91171-1, 182.79241-1, 149.310-1, 410.970+1, 289.03516+1, 289.47212+1, 291.31138+1, 294.54033+1, 299.13685+1, 305.06944+1, 312.29747+1, 320.77142+1, 330.43324+1, 341.21674+1, 356.24363+1, 369.70471+1, 381.50749+1, 391.57084+1, 399.82562+1, 406.21508+1, 410.69533+1, 413.23557+1, 413.81834+1, 378.94544+1, 325.750+1, 50.505-1  };
+
+TPolyLine *ds4=new TPolyLine(27, z4, r4);
+ds4->SetFillStyle(0);
+ds4->Draw("lsame");
+
+        
+}
+
+
+
+
+void draw2bShields(){
+
+Double_t z_us[5]={-4500+5400+zOffset, -4500+5400+zOffset, -4500+5400+2100+zOffset, -4500+5400+2100+zOffset, -4500+5400+zOffset};
+Double_t r_us[5]={41/2.0, 47/2.0, 61/2.0, 55/2.0, 41/2.0};
+
+TPolyLine *usShield=new TPolyLine(5, z_us, r_us);
+usShield->SetFillStyle(0);
+usShield->Draw("lsame");
+
+Double_t z_ds[7]={-4500+7875+zOffset, -4500+7875+zOffset, -4500+9500+zOffset, -4500+13000+zOffset, -4500+13000+zOffset, -4500+9500+zOffset, -4500+7875+zOffset};
+Double_t r_ds[7]={32, 38, 38, 49, 43, 32, 32};
+
+TPolyLine *dsShield=new TPolyLine(7, z_ds, r_ds);
+dsShield->SetFillStyle(0);
+dsShield->Draw("lsame");
+
+}
+
+
+void drawDetectors(){
+
+
+TBox* pmt=new TBox(zOffset+21995, 1200, zOffset+22100, 1500);
+pmt->SetFillColor(7);
+
+TBox* ring6=new TBox(zOffset+21995, 1035, zOffset+22100, 1140);
+ring6->SetFillColor(6);
+
+TBox* ring5=new TBox(zOffset+21995, 875, zOffset+22100, 1035);
+ring5->SetFillColor(5);
+
+TBox* ring4=new TBox(zOffset+21995, 785, zOffset+22100, 885);
+ring4->SetFillColor(4);
+
+TBox* ring3=new TBox(zOffset+21995, 725, zOffset+22100, 785);
+ring3->SetFillColor(3);
+
+TBox* ring2=new TBox(zOffset+21995, 680, zOffset+22100, 725);
+ring2->SetFillColor(2);
+
+TBox* ring1=new TBox(zOffset+21995, 640, zOffset+22100, 680);
+ring1->SetFillColor(1);
+
+ring1->Draw("same");
+ring2->Draw("same");
+ring3->Draw("same");
+ring4->Draw("same");
+ring5->Draw("same");
+ring6->Draw("same");
+pmt->Draw("same");
+
+}
+
+
 void drawExperiment(){
    auto C = new TCanvas();
    gStyle->SetOptTitle(kFALSE);
@@ -107,7 +259,7 @@ void drawExperiment(){
 
 
   
-   auto h1 = new TH2F ("h1","Entire Experiment",1000,-100, 31700.,1000,0,1500);
+   auto h1 = new TH2F ("h1","Entire Experiment",1000,-1000, 31700.,1000,0,1500);
    h1->Draw("");
 
   h1->GetXaxis()->SetTitle("z (mm)");
@@ -130,35 +282,13 @@ void drawExperiment(){
   leg5->SetLineColor(46);
   legend->Draw();
    
-   // s1=xup,  s2=xdown, r1=rinner, r2=router
-
-   //              target us window         detector rings
-  /*   const int nboxes =4;
-   Double_t s1[nboxes]={-1250/2,  1500.,    26500., 26500.};
-   Double_t s2[nboxes]={ 1250/2,  1500.002, 26550., 26550.};
-   Double_t r1[nboxes]={     0.,  0.,        855.,   680.};
-   Double_t r2[nboxes]={    10.,  140., 1070.,   730.};
-  */
-    //target us window   
    const int nboxes =2;
    Double_t s1[nboxes]={-1250/2,  1500.};
    Double_t s2[nboxes]={ 1250/2,  1500.002};
    Double_t r1[nboxes]={     -2.5,  0.};
    Double_t r2[nboxes]={    10.,  140.};
 
-   const int nrings =6;
-   Double_t dets1[nrings]={26500., 26500., 26500., 26500., 26500., 26500.};
-   Double_t dets2[nrings]={26550., 26550., 26550., 26550., 26550., 26550.};
-   Double_t detr1[nrings]={860.,     675.,   640.,   710.,   760.,  1020.};
-   Double_t detr2[nrings]={1020.,    710.,   675.,   760.,   860.,  1200.};
    
-   /*
-   Double_t s1[nboxes]={-1250/2,  26500.};
-   Double_t s2[nboxes]={ 1250/2,  26550.};
-   Double_t r1[nboxes]={     0.,    680.};
-   Double_t r2[nboxes]={    10.,  1070.};
-   */
-   //colls
    //Collimator 1
    const int ncoll1 = 5;
    Double_t c1s1[ncoll1]={4675.,  4775.,  4875.,  4975.,  5075.};
@@ -187,152 +317,8 @@ void drawExperiment(){
    Double_t bpr2[npipe]={  504.76,  528.33,  525.,    550.,    746.45,  988.};
    Double_t bpt1[npipe]={    2.38,    4.76,   28.6,     6.35,   19.05,    2.38125 };
 
-   TLine *line=new TLine();
-   line->DrawLine(5400, 16, 5400+950, 19);
-   line->DrawLine(5400, 16+8, 5400+950, 19+8); 
-   line->DrawLine(5400+950, 19, 5400+950+995, 23);
-   line->DrawLine(5400+950, 19+8, 5400+950+995, 19+9);
 
 
-
-
-
-
-   line->DrawLine(7875, 32, 9500, 32);
-   line->DrawLine(7875, 38, 9500, 38);
-   line->DrawLine(9500, 32, 9500, 38);
-
-
-   line->DrawLine(9500, 38, 13000, 49); 
-   line->DrawLine(9500, 32, 13000, 43);
-
-
-
-//   line->DrawLine(9500, 40.68, 12350, 48.02);
-//   line->DrawLine(16170.388, 149.310, 12350, 48.02);
-   
-
-
-   
-
-
-   //coils?
-   /*
-   Double_t uss[ncoils]={};
-   Double_t usl[ncoils]={};
-   */
-   
-   //lintels and collars
-   /*   const int nlint =5; 
-   Double_t lints1[nlint]={2000., 12300., 17311., 19000., 23000.};
-   Double_t lints2[nlint]={2300., 12400., 17411., 19100., 23100.};
-   Double_t lintr1[nlint]={  35.,   404.,   650.,   732., 928.};
-   Double_t lintr2[nlint]={  105.,  430.,   682.,   750., 980.};
- 
-   const int nlint =4;
-   Double_t lints1[nlint]={2000., 12300., 18000., 23000.};
-   Double_t lints2[nlint]={2300., 12400., 18100., 23100.};
-   Double_t lintr1[nlint]={  35.,   404.,   640.,   910.};
-   Double_t lintr2[nlint]={  105.,  430.,  1100.,  1100.};
-
-   */
-   const int nlint =6;
-   // lead collars near target and lintels in magnets
-   Double_t lints1[nlint]={1200., 2851., 12285., 16750., 23350., 8930.5};
-   Double_t lints2[nlint]={1600., 3051., 12385., 16900., 23500., 9180.5};
-   Double_t lintr1[nlint]={ 140.,   74.,   435.,   600.,   952.,  265.};
-   Double_t lintr2[nlint]={1150.,  330.,   650.,   750.,  1200., 1200.};
-
-  
-   //===========================================
-  // Draw tracks and rays
-   int tarbeam = 1;
-   int detrings = 1;
-   int firstcoll = 1;
-   int trapcoll = 1;
-   int pipe = 1;
-   int lint = 1;
-   int slogic = 1;
-   
-   for(int i=0;i<8;i++){
-     if(i<nboxes&&tarbeam>0)  draw_box(s1[i],s2[i],r1[i],r2[i],slogic,1);
-     if(i<ncolls&&trapcoll>0) draw_box(colls1[i],colls2[i],collr1[i],collr2[i],slogic,1);
-     if(i<nlint&&lint>0)     draw_box(lints1[i],lints2[i],lintr1[i],lintr2[i],slogic,1);
-     if(i<nrings&&detrings>0)     draw_box(dets1[i],dets2[i],detr1[i],detr2[i],slogic,i+1);
-
-     if(i<npipe&&pipe>0){
-       slogic = 0;
-       draw_pipe(bps1[i],bpl1[i],bpr1[i],bpr2[i],bpt1[i]);
-       slogic = 1;
-       if(i==2) draw_box(bps1[i],bps1[i]+bpl1[i],bpr1[i],bpr2[i]+bpt1[i],slogic,1);
-       cout<<"i = "<<i<<endl;
-     }
-     
-     if(i<ncoll1&&firstcoll>0){
-       if (i==0){
-	 slogic =2;
-       }
-       else if (i==ncoll1-1){
-	 slogic = 3;
-       }
-       else {
-	 slogic=0;
-       }
-       draw_box(c1s1[i],c1s2[i],c1r1[i],c1r2[i],slogic,1);
-       
-       slogic =1;
-       
-     }
-  }
-
-   TLine *coll1_a = new TLine(c1s1[1],c1r1[1],c1s1[1],c1r1[0]);
-   TLine *coll1_b = new TLine(c1s1[2],c1r2[2],c1s1[2],c1r2[1]);
-   TLine *coll1_c = new TLine(c1s1[2],c1r1[2],c1s1[2],c1r1[1]);
-   TLine *coll1_d = new TLine(c1s1[3],c1r1[3],c1s1[3],c1r1[2]);
-   //TLine *coll1_a = new TLine(4775., 18.489, 4775., 22.1);
-   coll1_a->Draw("same");
-   coll1_b->Draw("same");
-   coll1_c->Draw("same");
-   coll1_d->Draw("same");
- 
-   draw_ray(s2[0],c1s2[3],r1[0],c1r1[3],2);  //IPE
-   draw_ray(s1[0],colls1[2],r1[0],collr2[2],3); //OPE inner
-   draw_ray(s2[0],colls2[1],r1[0],collr1[1],3); //OPE outer
-
-   //   draw_los(colls2[3],s1[2],collr1[3],r2[2],4);
-   //draw_los(lints2[3],dets1[0],lintr1[3],detr2[0],4);
-   draw_los(colls2[3],dets1[0],collr1[3],detr2[0],4);
-   draw_los(colls2[1],dets1[0],collr1[1],detr1[1],4);
-   
-
-   //===========================================
-   //envelopes
-   // Read in the track values vs. radius for each particle/angle
-   // currently works for one track
-   //need to either add a check for z < something and start over or have separate files?
-  float position[3][1196];
-  float tmp_position[2]={0.,0.};//  float velocity[3][3589];
-  //float time[305]={0.};
-
-  int debug=0;  
-
-  ifstream in;
-  //  in.open("one_cartoon_track.txt");
-  //  in.open("processed_tracks.txt");
-  in.open("extreme_tracks_bfil125.txt");
-
-
-  ofstream out;
-  out.open("test.txt", ofstream::out);
-
-  //  if (!out.good()) {
-  //cout<<"ERROR: file doesn't exist"<<endl;
-  // return 0;
-  // }
-  
-  //  int maxlines=305;
-  // int maxlines=3589;
- int maxlines=1197;
   int nlines=0;
   float rmax = 0;
   int track_col[5]={46,66,46,66,46};
