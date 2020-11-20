@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Float_t zOffset = 4500;
+Float_t zOffset = 0;
 
 
 void draw_box(double x1, double x2, double y1, double y2, int syes, int col){
@@ -106,7 +106,7 @@ void draw_track(double x1, double x2, double y1, double y2, int col){
 
 void drawTarget(){
 
-TBox *target=new TBox(-1250.0/2., -2.5, 1250.0/2, 10);
+TBox *target=new TBox(-1250.0/2.-4500+zOffset, -2.5, 1250.0/2-4500+zOffset, 10);
 target->SetFillColor(0);
 target->Draw("lsame");
 
@@ -304,7 +304,7 @@ void drawExperiment(){
 
 
   
-   auto h1 = new TH2F ("h1","Entire Experiment",1000,-1000, 31700.,1000,0,1500);
+   auto h1 = new TH2F ("h1","Entire Experiment",1000,-1000-4500+zOffset, 31700-4500+zOffset,1000,0,1500);
    h1->Draw("");
 
   h1->GetXaxis()->SetTitle("z (mm)");
@@ -378,7 +378,26 @@ void drawExperiment(){
    drawDSCoil();
    drawDetectors();
 
+// Draw tracks and rays
+   int tarbeam = 1;
+   int detrings = 1;
+   int firstcoll = 1;
+   int trapcoll = 1;
+   int pipe = 1;
+   int lint = 1;
+   int slogic = 1;
 
+   for(int i=0;i<8;i++){
+
+     if(i<npipe&&pipe>0){
+       slogic = 0;
+       draw_pipe(bps1[i]-4500+zOffset,bpl1[i],bpr1[i],bpr2[i],bpt1[i]);
+       slogic = 1;
+       if(i==2) draw_box(bps1[i]-4500+zOffset,bps1[i]+bpl1[i]-4500+zOffset,bpr1[i],bpr2[i]+bpt1[i],slogic,1);
+       cout<<"i = "<<i<<endl;
+     }
+
+  }
 
  //===========================================
    //envelopes
@@ -414,7 +433,7 @@ void drawExperiment(){
   while (nlines<maxlines) {
     //    in >> position[0][nlines] >> position[1][nlines]  >> position[2][nlines] >> velocity[0][nlines] >>velocity[1][nlines] >> velocity[2][nlines] >> time[nlines];
     in >> position[0][nlines] >> position[1][nlines]  >> position[2][nlines];
-    
+    position[2][nlines]-=450+zOffset/10.0;
     //   cout<<position[0][nlines]<<"\t"<<position[1][nlines]<<"\t"<<position[2][nlines]<<"\t"<<endl;
     if(nlines>0&&position[2][nlines]>position[2][nlines-1]){
       if(position[2][nlines-1]>1350.&&position[2][nlines]>1350.){
