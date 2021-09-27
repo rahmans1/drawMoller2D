@@ -289,12 +289,34 @@ TPolyLine *usShield=new TPolyLine(5, z_us, r_us);
 usShield->SetFillStyle(0);
 usShield->Draw("lsame");
 
+Double_t z_us_naz[5]={-4500+5400+zOffset, -4500+5400+zOffset, -4500+5400+100+zOffset, -4500+5400+100+zOffset, -4500+5400+zOffset};
+Double_t r_us_naz[5]={24.5, 35, 35, 24.6, 24.5};
+
+TPolyLine *usShield_naz=new TPolyLine(5, z_us_naz, r_us_naz);
+usShield_naz->SetFillStyle(0);
+usShield_naz->SetLineColor(kRed);
+usShield_naz->Draw("lsame");
+
+
+Double_t z_us_inner_naz[5]={-4500+5400+zOffset, -4500+5400+zOffset, -4500+5400+200+zOffset, -4500+5400+200+zOffset, -4500+5400+zOffset};
+Double_t r_us_inner_naz[5]={17, 20, 20.3, 17.3, 17};
+
+TPolyLine *usShield_inner_naz=new TPolyLine(5, z_us_inner_naz, r_us_inner_naz);
+usShield_inner_naz->SetFillStyle(0);
+usShield_inner_naz->SetLineColor(kRed);
+usShield_inner_naz->Draw("lsame");
+
+
 Double_t z_ds[7]={-4500+7875+zOffset, -4500+7875+zOffset, -4500+9500+zOffset, -4500+13000+zOffset, -4500+13000+zOffset, -4500+9500+zOffset, -4500+7875+zOffset};
 Double_t r_ds[7]={32, 38, 38, 49, 43, 32, 32};
 
 TPolyLine *dsShield=new TPolyLine(7, z_ds, r_ds);
 dsShield->SetFillStyle(0);
 dsShield->Draw("lsame");
+
+
+
+
 
 }
 
