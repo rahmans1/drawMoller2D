@@ -339,17 +339,6 @@ usShield_inner_naz->SetLineColor(kRed);
 usShield_inner_naz->Draw("lsame");
 
 
-Double_t z_ds[7]={-4500+7875+zOffset, -4500+7875+zOffset, -4500+9500+zOffset, -4500+13000+zOffset, -4500+13000+zOffset, -4500+9500+zOffset, -4500+7875+zOffset};
-Double_t r_ds[7]={32, 38, 38, 49, 43, 32, 32};
-
-TPolyLine *dsShield=new TPolyLine(7, z_ds, r_ds);
-dsShield->SetFillStyle(0);
-dsShield->Draw("lsame");
-
-
-
-
-
 }
 
 
