@@ -160,6 +160,17 @@ coll1->Draw("lsame");
 
 }
 
+void drawCollimator6(){
+	
+Double_t z[5]= {9556+zOffset, 9556+69.85+zOffset, 9556+69.85+zOffset, 9556+zOffset, 9556+zOffset};
+Double_t r[5]= {55.314, 57.982, 105.8, 105.8, 55.314};
+
+TPolyLine *col6AUS=new TPolyLine(5, z, r);
+col6AUS->SetFillStyle(0);
+col6AUS->Draw("lsame"); 	
+	
+}
+
 void drawAcceptCollimators(){
 
 TBox* coll2_bot=new TBox(-4500+5250+zOffset, 27, -4500+5400+zOffset, 35.0); // Give bottom left and top right cooridnate
