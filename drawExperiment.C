@@ -443,6 +443,7 @@ void drawExperiment(){
    drawCollars();
    drawCollimator1(); 
    drawAcceptCollimators();
+   drawCollimator6();
    draw2bShields();
    drawUSCoil();
    drawDSCoil();
