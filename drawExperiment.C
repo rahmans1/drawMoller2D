@@ -162,13 +162,34 @@ coll1->Draw("lsame");
 
 void drawCollimator6(){
 	
-Double_t z[5]= {9556+zOffset, 9556+69.85+zOffset, 9556+69.85+zOffset, 9556+zOffset, 9556+zOffset};
-Double_t r[5]= {55.314, 57.982, 105.8, 105.8, 55.314};
+Double_t z_col6AUS[5]= {9555.904+zOffset, 9555.904+69.85+zOffset, 9555.904+69.85+zOffset, 9555.904+zOffset, 9555.904+zOffset};
+Double_t r_col6AUS[5]= {55.314, 57.982, 105.8, 105.8, 55.314};
 
-TPolyLine *col6AUS=new TPolyLine(5, z, r);
+TPolyLine *col6AUS=new TPolyLine(5, z_col6AUS, r_col6AUS);
 col6AUS->SetFillStyle(0);
-col6AUS->Draw("lsame"); 	
+col6AUS->Draw("lsame"); 
 	
+Double_t z_col6ADS[5]= {9638.454+zOffset, 9638.454+69.85+zOffset, 9638.454+69.85+zOffset, 9638.454+zOffset, 9638.454+zOffset};
+Double_t r_col6ADS[5]= {58.471, 61.143, 105.8, 105.8, 58.471};
+	
+TPolyLine *col6ADS=new TPolyLine(5, z_col6ADS, r_col6ADS);
+col6ADS->SetFillStyle(0);
+col6ADS->Draw("lsame"); 
+
+Double_t z_col6BUS[5]= {10927.504+zOffset, 10927.504+69.85+zOffset, 10927.504+69.85+zOffset, 10927.504+zOffset, 10927.504+zOffset};
+Double_t r_col6BUS[5]= {59.911, 65.411, 121.05, 121.05, 59.911};
+
+TPolyLine *col6BUS=new TPolyLine(5, z_col6BUS, r_col6BUS);
+col6BUS->SetFillStyle(0);
+col6BUS->Draw("lsame"); 
+	
+Double_t z_col6BDS[5]= {11010.054+zOffset, 11010.054+69.85+zOffset, 11010.054+69.85+zOffset, 11010.054+zOffset, 11010.054+zOffset};
+Double_t r_col6BDS[5]= {66.411, 71.912, 121.05, 121.05, 66.411};
+	
+TPolyLine *col6BDS=new TPolyLine(5, z_col6BDS, r_col6BDS);
+col6BDS->SetFillStyle(0);
+col6BDS->Draw("lsame"); 
+
 }
 
 void drawAcceptCollimators(){
