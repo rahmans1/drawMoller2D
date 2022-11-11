@@ -567,6 +567,8 @@ void drawExperiment(){
   rmax = position[0][nlines-1];
   printf(" found %d points, rmax = %f \n",nlines, rmax);
   in.close();
-   
+  
+	
+  C->Print("Experiment.pdf");
    //gPad->BuildLegend();
 }
