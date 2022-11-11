@@ -135,11 +135,12 @@ TBox *lintel=new TBox(12285-4500+zOffset, 435, 12385-4500+zOffset, 650);
 lintel->SetFillColor(0);
 lintel->Draw("lsame");
 
-TBox *collar1=new TBox(16750-4500+zOffset, 600, 16900-4500+zOffset, 750);
-collar1->SetFillColor(0);
+Double_t z_collar1[5]={11815.4958+zOffset, 11815.4958+150+zOffset, 11815.4958+150+zOffset, 11815.4958+zOffset, 11815.4958+zOffset};
+Double_t r_collar1[5]={605.8789, 616.077, 755.8659, 755.8659, 605.8789};
+
+TPolyLine *collar1=new TPolyLine(5, z_collar1, r_collar1);
+collar1->SetFillStyle(0);
 collar1->Draw("lsame");
-
-
 
 TBox *collar2=new TBox(23350-4500+zOffset, 952, 23500-4500+zOffset, 1200);
 collar2->SetFillColor(0);
