@@ -142,11 +142,19 @@ TPolyLine *collar1=new TPolyLine(5, z_collar1, r_collar1);
 collar1->SetFillStyle(0);
 collar1->Draw("lsame");
 
-TBox *collar2=new TBox(23350-4500+zOffset, 952, 23500-4500+zOffset, 1200);
-collar2->SetFillColor(0);
-collar2->Draw("lsame");
+Double_t z_collar2_IR[5]={19132.69+zOffset, 19132.69+150+zOffset, 19132.69+150+zOffset, 19132.69+zOffset, 19132.69+zOffset};
+Double_t r_collar2_IR[5]={1010, 1019, 1146.35, 1146.35,1010};
 
+TPolyLine *collar2_IR=new TPolyLine(5, z_collar2_IR, r_collar2_IR);
+collar2_IR->SetFillStyle(0);
+collar2_IR->Draw("lsame");
+	
+Double_t z_collar2_OR[5]={18932.69+zOffset, 18932.69+150+zOffset, 18932.69+150+zOffset, 18932.69+zOffset, 18932.69+zOffset};
+Double_t r_collar2_OR[5]={1120.95, 1120.95, 1315, 1315, 1120.95};
 
+TPolyLine *collar2_OR=new TPolyLine(5, z_collar2_OR, r_collar2_OR);
+collar2_OR->SetFillStyle(0);
+collar2_OR->Draw("lsame");
 }
 
 
