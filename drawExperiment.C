@@ -192,6 +192,17 @@ col6BDS->Draw("lsame");
 
 }
 
+
+void drawPhotonScraper(){
+TBox* pb_bot=new TBox(4707.5+zOffset, 40.0, 4707.5+101.6+zOffset, 61.97); // Give bottom left and top right cooridnate
+pb_bot->SetFillStyle(0);
+pb_bot->Draw("lsame");
+
+TBox* pb_top=new TBox(4707.5+zOffset, 61.97, 4707.5+101.6+zOffset, 140.11); // Give bottom left and top right cooridnate
+pb_top->SetFillStyle(0);
+pb_top->Draw("lsame");
+}
+
 void drawAcceptCollimators(){
 
 TBox* coll2_bot=new TBox(-4500+5250+zOffset, 27, -4500+5400+zOffset, 35.0); // Give bottom left and top right cooridnate
@@ -453,6 +464,7 @@ void drawExperiment(){
    drawCollars();
    drawCollimator1(); 
    drawAcceptCollimators();
+   drawPhotonScraper();
    drawCollimator6();
    draw2bShields();
    drawUSCoil();
